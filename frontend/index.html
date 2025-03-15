@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATMOS.AI</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    // Add global error handler
+    window.addEventListener('unhandledrejection', function(event) {
+      console.error('Unhandled promise rejection:', event.reason);
+      const errorDiv = document.getElementById('error');
+      if (errorDiv) {
+        const errorMessage = event.reason.message || 'Network error occurred';
+        console.error('Error details:', errorMessage);
+        errorDiv.textContent = errorMessage;
+        errorDiv.classList.add('visible');
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><center>Atmos AI</h1>
+    </header>
+    <main>
+      <div id="chatContainer" class="chat-container"></div>
+      <form id="weatherForm" class="chat-input">
+        <div class="input-wrapper">
+          <input type="text" id="date" placeholder="Select date" data-input required>
+          <select id="reportLength" class="report-length">
+            <option value="100">Brief (100 words)</option>
+            <option value="200" selected>Standard (200 words)</option>
+            <option value="300">Detailed (300 words)</option>
+            <option value="500">Comprehensive (500 words)</option>
+          </select>
+        </div>
+        <button type="submit">Send</button>
+      </form>
+      <div id="error" class="error"></div>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
